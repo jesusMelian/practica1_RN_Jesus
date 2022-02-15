@@ -1,17 +1,20 @@
 import React, {useState} from 'react'
-import { StyleSheet, TouchableOpacity, View} from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-export const Navbar = () => {
+
+export const BtnAdd = () => {
     const [showModalLikeBooks, setShowModalLikeBooks] = useState(false);
   return (
         <TouchableOpacity onPress={() => setShowModalLikeBooks(true)} style={styles.fabLocationBL}>
             <View style={styles.fab}>
                 <View style={styles.fabText}>
-                    <FontAwesomeIcon icon={faPlus} />
+                    {/* <FontAwesomeIcon icon={faPlus}/> */}
+                    <Image source={require("../Icons/addFill.png")} style={styles.tinyIcon}/>
                 </View>
             </View>
         </TouchableOpacity>
+        
   )
 }
 
@@ -26,9 +29,10 @@ const styles = StyleSheet.create({
     fabLocationBL: {
         position: 'absolute',
         bottom: 0,
-        right: 0
+        right: 65
     },
-    fabText: {
-        padding: 22
+    tinyIcon: {
+        width: 60,
     }
+    
   });
