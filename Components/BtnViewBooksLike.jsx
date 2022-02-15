@@ -1,17 +1,17 @@
 import React from 'react'
 import { Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 
-export const BtnViewBooks = ({changeViewRead}) => {
+export const BtnViewBooksLike = ({changeViewRead}) => {
     const changeFlatList = () => {
         console.log("CHANGEFLATLIST");
-        changeViewRead(true);
+        changeViewRead(false);
     }
   return (
     <TouchableOpacity onPress={() => changeFlatList()} style={styles.fabLocationBL}>
             <View style={styles.fab}>
                 <View style={styles.fabText}>
                     {/* <FontAwesomeIcon icon={faPlus}/> */}
-                    <Image source={require("../Icons/book.png")} style={styles.tinyIcon}/>
+                    <Image source={require("../Icons/like2.png")} style={styles.tinyIcon}/>
                 </View>
             </View>
         </TouchableOpacity>
