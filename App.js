@@ -11,12 +11,12 @@ export default function App() {
   const [id, setId] = useState(1);
   const [viewBookModalLike , setViewBookModalLike] = useState(false);
 
-    const handleInputBookLike = (bookName) => {
+    const handleAddBookLike = (bookName) => {
         setId(id+1);
         setListBookLike((bookList)=> [...bookList, {id: id, value: bookName}]);
         console.log(listBookLike);
     }
-    const handleInputBookRead = (bookName) => {
+    const handleAddBookRead = (bookName) => {
       setId(id+1);
       setListBookRead((bookList)=> [...bookList, {id: id, value: bookName}]);
       //console.log(listBookRead);
@@ -28,7 +28,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <AddBook showModal={viewBookModalLike} />
+      <AddBook handleAddBookLike={handleAddBookLike} handleAddBookRead={handleAddBookRead} showModal={viewBookModalLike} />
       {/* BOTONES */}
       <BtnAdd onViewModal={setViewBookModalLike}/>
       <BtnViewBooks />

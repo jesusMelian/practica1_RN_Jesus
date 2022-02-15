@@ -1,17 +1,22 @@
 import React, {useState} from "react";
-import { Button, Modal, StyleSheet, TextInput, View} from 'react-native';
+import { Button, Modal, StyleSheet, TextInput, TouchableOpacity, Image, View} from 'react-native';
 
-export const AddBook = ({ handleAddBook, showModal }) => {
+export const AddBook = ({ handleAddBookLike, handleAddBookRead, showModal }) => {
     const [bookName, setBookName] = useState("");
 
   const handleBookChange = (bookText) => {
     setBookName(bookText);
   };
 
-  const validateBook = () => {
-      handleAddBook(bookName);
+  const validateBookLike = () => {
+      handleAddBookLike(bookName);
       setBookName("");
   }
+
+  const validateBookRead = () => {
+    handleAddBookRead(bookName);
+    setBookName("");
+}
   return (
     <Modal visible={showModal} animationType={"slide"} transparent={true}>
         <View style={styles.inputBookGroup}>
@@ -21,7 +26,20 @@ export const AddBook = ({ handleAddBook, showModal }) => {
           value={bookName}
           onChangeText={handleBookChange}
         />
-        <Button style={styles.buttonAdd} title="Add" onPress={() => validateBook()} />
+        <TouchableOpacity onPress={() => validateBookLike()}>
+            <View>
+                <View style={styles.btnLike}>
+                    <Image source={require("../Icons/like2.png")} style={styles.tinyIcon}/>
+                </View>
+            </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => validateBookRead()}>
+            <View>
+                <View style={styles.btnLike}>
+                    <Image source={require("../Icons/read.png")} style={styles.tinyIcon}/>
+                </View>
+            </View>
+        </TouchableOpacity>
       </View>
     </Modal>
   )
@@ -39,10 +57,23 @@ const styles = StyleSheet.create({
       flex: 1
     },
     textInputBook: {
-      borderBottomColor: "teal",
+      borderBottomColor: "#BB86FC",
       borderBottomWidth: 1,
       height: 40,
       width: "75%",
     },
     
+    btnLike: {
+        backgroundColor: "#BB86FC",
+        width: 30,
+        height: 30,
+        borderRadius: 5,
+        marginTop: 10
+        // justifyContent: 'center'
+    },
+
+    tinyIcon: {
+        width:30,
+        height: 30,
+    }
   });
