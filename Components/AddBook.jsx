@@ -23,6 +23,7 @@ export const AddBook = ({ handleAddBookLike, handleAddBookRead, showModal }) => 
         <TextInput
           style={styles.textInputBook}
           placeholder="Add new Book to shopping list"
+          placeholderTextColor={"#BB86FC"}
           value={bookName}
           onChangeText={handleBookChange}
         />
@@ -54,13 +55,14 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       borderRadius: 10,
       padding: 20,
-      flex: 1
+      flex: 1,
     },
     textInputBook: {
       borderBottomColor: "#BB86FC",
       borderBottomWidth: 1,
       height: 40,
       width: "75%",
+      color: "#BB86FC",
     },
     
     btnLike: {
