@@ -5,19 +5,30 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 export const Navbar = () => {
     const [showModalLikeBooks, setShowModalLikeBooks] = useState(false);
   return (
-    <View>
-        <TouchableOpacity onPress={() => setShowModalLikeBooks(true)} >
-            <FontAwesomeIcon icon={faPlus} />
+        <TouchableOpacity onPress={() => setShowModalLikeBooks(true)} style={styles.fabLocationBL}>
+            <View style={styles.fab}>
+                <View style={styles.fabText}>
+                    <FontAwesomeIcon icon={faPlus} />
+                </View>
+            </View>
         </TouchableOpacity>
-    </View>
   )
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+    fab: {
+        backgroundColor: "#5856D6",
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        justifyContent: 'center'
     },
+    fabLocationBL: {
+        position: 'absolute',
+        bottom: 0,
+        right: 0
+    },
+    fabText: {
+        padding: 22
+    }
   });
