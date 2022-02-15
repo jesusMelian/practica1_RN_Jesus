@@ -3,10 +3,10 @@ import { Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-export const BtnAdd = () => {
-    const [showModalLikeBooks, setShowModalLikeBooks] = useState(false);
+export const BtnAdd = ({onViewModal}) => {
+    
   return (
-        <TouchableOpacity onPress={() => setShowModalLikeBooks(true)} style={styles.fabLocationBL}>
+        <TouchableOpacity onPress={() => onViewModal(true)} style={styles.fabLocationBL}>
             <View style={styles.fab}>
                 <View style={styles.fabText}>
                     {/* <FontAwesomeIcon icon={faPlus}/> */}
