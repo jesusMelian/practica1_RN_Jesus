@@ -32,7 +32,13 @@ export default function App() {
       console.log("VIEW BOOKSREAD: ",listBookRead);
     } 
 
-    const handleRemoveBook = (id) => {
+    const handleRemoveBookLike = (id) => {
+      setListBookLike(listBookLike.filter(book => book.id != id));
+      console.log("BORRANDO LIBRO CON ID: " + id);
+    }
+
+    const handleRemoveBookRead = (id) => {
+      setListBookLike(listBookRead.filter(book => book.id != id));
       console.log("BORRANDO LIBRO CON ID: " + id);
     }
 
@@ -53,7 +59,7 @@ export default function App() {
                     <ViewBooks 
                         value={value}
                         // image={image}
-                        onDelete={() => handleRemoveBook(id)} 
+                        onDelete={() => handleRemoveBookLike(id)} 
                     />
                 )
             }
@@ -68,7 +74,7 @@ export default function App() {
                       <ViewBooks 
                           value={value}
                           // image={image}
-                          onDelete={() => handleRemoveBook(id)} 
+                          onDelete={() => handleRemoveBookRead(id)} 
                       />
                   )
               }
