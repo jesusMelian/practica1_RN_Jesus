@@ -1,12 +1,11 @@
 import React, {useState} from 'react'
 import { Button, Modal, StyleSheet, TextInput, TouchableOpacity, Image, View} from 'react-native';
 
-export const ViewModalDetailRead = ({viewModal, onDelete, book, onEditBookRead}) => {
+export const ViewModalDetailRead = ({viewModal, setViewModal, onDelete, book, onEditBookRead}) => {
     const [bookName, setBookName] = useState(book.value);
     const [pageRead, setPageRead] = useState(book.pageRead);
     const [pageTotal, setPageTotal] = useState(book.pageTotal);
     const [percentage, setPercentage] = useState(book.percentage);
-    const [showModal, setShowModal] = useState(viewModal);
 
   const handleBookChange = (bookText) => {
     setBookName(bookText);
@@ -25,12 +24,12 @@ export const ViewModalDetailRead = ({viewModal, onDelete, book, onEditBookRead})
   }
 
   const validateBookRead = () => {
-      onEditBookRead(bookName, pageRead, pageTotal, percentage);
-      setShowModal(false);
+      onEditBookRead(book.id, bookName, pageRead, pageTotal, percentage);
+      setViewModal(false);
   }
 
   return (
-    <Modal visible={showModal} animationType={"slide"} transparent={true}>
+    <Modal visible={viewModal} animationType={"slide"} transparent={true}>
         <View style={styles.inputBookGroup}>
         <TextInput
           style={styles.textInputBook}

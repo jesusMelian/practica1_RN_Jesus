@@ -7,7 +7,7 @@ export const ViewBooks = ({book, key, onDelete, onEditBookRead}) => {
 
     return (
         <View>
-            <ViewModalDetailRead viewModal={viewDetailBook} onDelete={onDelete} book={book} onEditBookRead={onEditBookRead}/>
+            <ViewModalDetailRead viewModal={viewDetailBook} setViewModal={setViewDetailBook} onDelete={onDelete} book={book} onEditBookRead={onEditBookRead}/>
             <TouchableOpacity onPress={() => setViewDetailBook(true)} underlayColor={"pink"} activeOpacity={0.5}>
                 <View style={styles.viewBooks} key={key}>
                     <Text style={styles.textBook}>{book.value}</Text>

@@ -39,7 +39,7 @@ export default function App() {
     }
 
     const handleRemoveBookRead = (id) => {
-      setListBookLike(listBookRead.filter(book => book.id != id));
+      setListBookRead(listBookRead.filter(book => book.id != id));
       console.log("BORRANDO LIBRO CON ID: " + id);
     }
 
@@ -49,6 +49,7 @@ export default function App() {
     }
 
     const handleEditBookRead = (id, bookName, pageRead, pageTotal, percentage) => {
+      console.log("ID: ",id, " VALUE: ",bookName," PAGEREAD: ",pageRead, " PAGETOTAL: ",pageTotal, " PERCENTAGE: ",percentage);
       handleRemoveBookRead(id);
       setListBookRead((bookList)=> [...bookList, {id: id, value: bookName, pageRead: pageRead, pageTotal: pageTotal, percentage: percentage}]);
       
