@@ -15,6 +15,7 @@ export default function App() {
   const [viewBookModalLike , setViewBookModalLike] = useState(false);
   const [viewRead, setViewRead] = useState(false);
 
+
     const handleAddBookLike = (bookName) => {
         setId(id+1);
         setListBookLike((bookList)=> [...bookList, {id: id, value: bookName}]);
@@ -23,9 +24,9 @@ export default function App() {
         setViewBookModalLike(false);
         console.log("VIEW BOOKSLIKE: ",listBookLike);
     }
-    const handleAddBookRead = (bookName) => {
+    const handleAddBookRead = (bookName, pageRead, pageTotal, percentage) => {
       setId(id+1);
-      setListBookRead((bookList)=> [...bookList, {id: id, value: bookName}]);
+      setListBookRead((bookList)=> [...bookList, {id: id, value: bookName, pageRead: pageRead, pageTotal: pageTotal, percentage: percentage}]);
       
       //CIERRO EL MODAL 
       setViewBookModalLike(false);
@@ -46,6 +47,15 @@ export default function App() {
       console.log("CAMBIAMOS A: ", bool);
       setViewRead(bool)
     }
+
+    const handleEditBookRead = (id, bookName, pageRead, pageTotal, percentage) => {
+      handleRemoveBookRead(id);
+      setListBookRead((bookList)=> [...bookList, {id: id, value: bookName, pageRead: pageRead, pageTotal: pageTotal, percentage: percentage}]);
+      
+      //CIERRO EL MODAL 
+      setViewBookModalLike(false);
+      console.log("VIEW BOOKSREAD: ",listBookRead);
+    } 
   return (
     <View style={styles.container}>
       {/* <ViewBooksLike listBookRead={listBookRead} handleRemoveBook={handleRemoveBook} /> */}
@@ -56,10 +66,10 @@ export default function App() {
             <FlatList data={listBookLike} renderItem={ itemData => {
                 const { id, value } = itemData.item;
                 return(
-                    <ViewBooks 
+                    <ViewBooksLike
                         value={value}
                         // image={image}
-                        onDelete={() => handleRemoveBookLike(id)} 
+                        onDelete={handleRemoveBookLike} 
                     />
                 )
             }
@@ -72,9 +82,10 @@ export default function App() {
                   const { id, value } = itemData.item;
                   return(
                       <ViewBooks 
-                          value={value}
+                          book={itemData.item}
                           // image={image}
-                          onDelete={() => handleRemoveBookRead(id)} 
+                          onDelete={handleRemoveBookRead} 
+                          onEditBookRead={handleEditBookRead}
                       />
                   )
               }

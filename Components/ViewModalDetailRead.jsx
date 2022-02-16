@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, {useState} from 'react'
 import { Button, Modal, StyleSheet, TextInput, TouchableOpacity, Image, View} from 'react-native';
 
-export const AddBook = ({ handleAddBookLike, handleAddBookRead, showModal }) => {
-    const [bookName, setBookName] = useState("");
-    const [pageRead, setPageRead] = useState("0");
-    const [pageTotal, setPageTotal] = useState("0");
-    const [percentage, setPercentage] = useState("0");
+export const ViewModalDetailRead = ({viewModal, onDelete, book, onEditBookRead}) => {
+    const [bookName, setBookName] = useState(book.value);
+    const [pageRead, setPageRead] = useState(book.pageRead);
+    const [pageTotal, setPageTotal] = useState(book.pageTotal);
+    const [percentage, setPercentage] = useState(book.percentage);
+    const [showModal, setShowModal] = useState(viewModal);
 
   const handleBookChange = (bookText) => {
     setBookName(bookText);
@@ -23,13 +24,11 @@ export const AddBook = ({ handleAddBookLike, handleAddBookRead, showModal }) => 
     setPercentage(percentageText);
   }
 
-  const validateBookLike = () => {
-      handleAddBookLike(bookName);
+  const validateBookRead = () => {
+      onEditBookRead(bookName, pageRead, pageTotal, percentage);
+      setShowModal(false);
   }
 
-  const validateBookRead = () => {
-    handleAddBookRead(bookName, pageRead, pageTotal, percentage);
-}
   return (
     <Modal visible={showModal} animationType={"slide"} transparent={true}>
         <View style={styles.inputBookGroup}>
@@ -38,7 +37,7 @@ export const AddBook = ({ handleAddBookLike, handleAddBookRead, showModal }) => 
           placeholder="Add new Book to shopping list"
           placeholderTextColor={"#BB86FC"}
           value={bookName}
-          onChangeText={handleBookChange}
+          disabled
         />
         <TextInput
             style={styles.textInputBook}
@@ -61,21 +60,14 @@ export const AddBook = ({ handleAddBookLike, handleAddBookRead, showModal }) => 
             value={percentage}
             onChangeText={handlePercentageChange}
         />
-        <TouchableOpacity onPress={() => validateBookLike()}>
-            <View>
-                <View style={styles.btnLike}>
-                    <Image source={require("../Icons/like2.png")} style={styles.tinyIcon}/>
-                </View>
-            </View>
-        </TouchableOpacity>
         <TouchableOpacity onPress={() => validateBookRead()}>
             <View>
                 <View style={styles.btnLike}>
-                    <Image source={require("../Icons/read.png")} style={styles.tinyIcon}/>
+                    <Image source={require("../Icons/save.png")} style={styles.tinyIcon}/>
                 </View>
             </View>
         </TouchableOpacity>
-      </View>
+        </View>
     </Modal>
   )
 }

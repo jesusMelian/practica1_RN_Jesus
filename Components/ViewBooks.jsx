@@ -1,15 +1,21 @@
-import React from 'react'
+import React, {useState} from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {ViewModalDetailRead} from './ViewModalDetailRead';
 
-export const ViewBooks = ({value, key, onDelete}) => {
-    console.log("HOLAAAA");
-  return (
-    <TouchableOpacity onPress={onDelete} underlayColor={"pink"} activeOpacity={0.5}>
-            <View style={styles.viewBooks} key={key}>
-                <Text style={styles.textBook}>{value}</Text>
-            </View>
-        </TouchableOpacity>
-  )
+export const ViewBooks = ({book, key, onDelete, onEditBookRead}) => {
+    const [viewDetailBook, setViewDetailBook] = useState(false);
+
+    return (
+        <View>
+            <ViewModalDetailRead viewModal={viewDetailBook} onDelete={onDelete} book={book} onEditBookRead={onEditBookRead}/>
+            <TouchableOpacity onPress={() => setViewDetailBook(true)} underlayColor={"pink"} activeOpacity={0.5}>
+                <View style={styles.viewBooks} key={key}>
+                    <Text style={styles.textBook}>{book.value}</Text>
+                </View>
+            </TouchableOpacity>
+        </View>
+        
+    )
 }
 
 const styles = StyleSheet.create({
