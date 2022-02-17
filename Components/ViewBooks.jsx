@@ -11,6 +11,7 @@ export const ViewBooks = ({book, key, onDelete, onEditBookRead}) => {
             <TouchableOpacity onPress={() => setViewDetailBook(true)} underlayColor={"pink"} activeOpacity={0.5}>
                 <View style={styles.viewBooks} key={key}>
                     <Text style={styles.textBook}>{book.value}</Text>
+                    <Text style={styles.pages}>{book.pageRead+ "/"+ book.pageTotal+ " -- " + book.percentage + "%"}</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -36,5 +37,10 @@ const styles = StyleSheet.create({
         fontSize: 19,
         width: "90%",
         color: '#FFFFFF',
+    },
+    pages: {
+        position: 'absolute',
+        right: 0,
+        color: 'white'
     }
 });

@@ -5,7 +5,7 @@ export const ViewBooksLike = ({value, key, onDelete}) => {
     const [viewDetailBook, setViewDetailBook] = useState(false);
     return (
         <View>
-            {/* <ViewModalDetail viewModal={viewDetailBook} onDelete={onDelete}/> */}
+            {/* <ViewModalDetailLike viewModal={viewDetailBook} onDelete={onDelete}/> */}
             <TouchableOpacity onPress={() => setViewDetailBook(true)} underlayColor={"pink"} activeOpacity={0.5}>
                 <View style={styles.viewBooks} key={key}>
                     <Text style={styles.textBook}>{value}</Text>

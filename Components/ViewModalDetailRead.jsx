@@ -63,6 +63,7 @@ export const ViewModalDetailRead = ({viewModal, setViewModal, onDelete, book, on
             placeholderTextColor={"#BB86FC"}
             value={percentage+ "%"}
             onChangeText={handlePercentageChange}
+            disabled
         />
         <TouchableOpacity onPress={() => validateBookRead()}>
             <View>
@@ -86,6 +87,7 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       padding: 20,
       flex: 1,
+      backgroundColor: "rgba(0,0,0, 0.7)",
     },
     textInputBook: {
       borderBottomColor: "#BB86FC",
@@ -97,15 +99,15 @@ const styles = StyleSheet.create({
     
     btnLike: {
         backgroundColor: "#BB86FC",
-        width: 30,
-        height: 30,
+        width: 40,
+        height: 40,
         borderRadius: 5,
         marginTop: 10
         // justifyContent: 'center'
     },
 
     tinyIcon: {
-        width:30,
-        height: 30,
+        width:40,
+        height: 40,
     }
   });
