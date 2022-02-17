@@ -24,7 +24,12 @@ export const ViewModalDetailRead = ({viewModal, setViewModal, onDelete, book, on
   }
 
   const validateBookRead = () => {
-      onEditBookRead(book.id, bookName, pageRead, pageTotal, percentage);
+    const myPageRead = parseInt(pageRead);
+    const myPageTotal = parseInt(pageTotal);
+    let myPercentage = (myPageRead*100);
+    myPercentage = (myPercentage/myPageTotal).toString();
+
+      onEditBookRead(book.id, bookName, pageRead, pageTotal, myPercentage);
       setViewModal(false);
   }
 
@@ -56,7 +61,7 @@ export const ViewModalDetailRead = ({viewModal, setViewModal, onDelete, book, on
             style={styles.textInputBook}
             placeholder="Insert number page"
             placeholderTextColor={"#BB86FC"}
-            value={percentage}
+            value={percentage+ "%"}
             onChangeText={handlePercentageChange}
         />
         <TouchableOpacity onPress={() => validateBookRead()}>

@@ -5,7 +5,7 @@ export const AddBook = ({ handleAddBookLike, handleAddBookRead, showModal }) => 
     const [bookName, setBookName] = useState("");
     const [pageRead, setPageRead] = useState("0");
     const [pageTotal, setPageTotal] = useState("0");
-    const [percentage, setPercentage] = useState("0");
+    const [percentage, setPercentage] = useState();
 
   const handleBookChange = (bookText) => {
     setBookName(bookText);
@@ -17,6 +17,7 @@ export const AddBook = ({ handleAddBookLike, handleAddBookRead, showModal }) => 
 
   const handlePageTotalChange = (pageTotalText) => {
     setPageTotal(pageTotalText);
+    setPercentage(pageRead*100/pageTotal);
   }
 
   const handlePercentageChange = (percentageText) => {
@@ -28,7 +29,17 @@ export const AddBook = ({ handleAddBookLike, handleAddBookRead, showModal }) => 
   }
 
   const validateBookRead = () => {
-    handleAddBookRead(bookName, pageRead, pageTotal, percentage);
+    const myPageRead = parseInt(pageRead);
+    const myPageTotal = parseInt(pageTotal);
+    let myPercentage = (myPageRead*100);
+    myPercentage = (myPercentage/myPageTotal).toString();
+
+    console.log("TIPO DE MYPERCENTAGE: " + typeof(myPercentage));
+    setPercentage(myPercentage.toString());
+    handleAddBookRead(bookName, pageRead, pageTotal, myPercentage);
+    setBookName("");
+    setPageRead();
+    setPageTotal();
 }
   return (
     <Modal visible={showModal} animationType={"slide"} transparent={true}>
@@ -53,13 +64,6 @@ export const AddBook = ({ handleAddBookLike, handleAddBookRead, showModal }) => 
             placeholderTextColor={"#BB86FC"}
             value={pageTotal}
             onChangeText={handlePageTotalChange}
-        />
-        <TextInput
-            style={styles.textInputBook}
-            placeholder="Insert number page"
-            placeholderTextColor={"#BB86FC"}
-            value={percentage}
-            onChangeText={handlePercentageChange}
         />
         <TouchableOpacity onPress={() => validateBookLike()}>
             <View>
