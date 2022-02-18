@@ -1,35 +1,15 @@
 import React, {useState} from 'react'
 import { Button, Modal, StyleSheet, TextInput, TouchableOpacity, Image, View} from 'react-native';
 
-export const ViewModalDetailRead = ({viewModal, setViewModal, onDelete, book, onEditBookRead}) => {
+export const ViewModalDetailLike = ({viewModal, setViewModal, onDelete, book, onEditBookLike}) => {
     const [bookName, setBookName] = useState(book.value);
-    const [pageRead, setPageRead] = useState(book.pageRead);
-    const [pageTotal, setPageTotal] = useState(book.pageTotal);
-    const [percentage, setPercentage] = useState(book.percentage);
 
   const handleBookChange = (bookText) => {
     setBookName(bookText);
   };
 
-  const handlePageReadChange = (pageReadText) => {
-    setPageRead(pageReadText);
-  }
-
-  const handlePageTotalChange = (pageTotalText) => {
-    setPageTotal(pageTotalText);
-  }
-
-  const handlePercentageChange = (percentageText) => {
-    setPercentage(percentageText);
-  }
-
-  const validateBookRead = () => {
-    const myPageRead = parseInt(pageRead);
-    const myPageTotal = parseInt(pageTotal);
-    let myPercentage = (myPageRead*100);
-    myPercentage = (myPercentage/myPageTotal).toFixed(2).toString();
-
-      onEditBookRead(book.id, bookName, pageRead, pageTotal, myPercentage);
+  const validateBookLike = () => {
+      onEditBookLike(book.id, bookName);
       setViewModal(false);
   }
 
@@ -41,31 +21,9 @@ export const ViewModalDetailRead = ({viewModal, setViewModal, onDelete, book, on
           placeholder="Add new Book to shopping list"
           placeholderTextColor={"#BB86FC"}
           value={bookName}
-          disabled
+          onChangeText={handleBookChange}
         />
-        <TextInput
-            style={styles.textInputBook}
-            placeholder="Insert number page read"
-            placeholderTextColor={"#BB86FC"}
-            value={pageRead}
-            onChangeText={handlePageReadChange}
-        />
-        <TextInput
-            style={styles.textInputBook}
-            placeholder="Insert number page total"
-            placeholderTextColor={"#BB86FC"}
-            value={pageTotal}
-            onChangeText={handlePageTotalChange}
-        />
-        <TextInput
-            style={styles.textInputBook}
-            placeholder="Insert number page"
-            placeholderTextColor={"#BB86FC"}
-            value={percentage+ "%"}
-            onChangeText={handlePercentageChange}
-            disabled
-        />
-        <TouchableOpacity onPress={() => validateBookRead()}>
+        <TouchableOpacity onPress={() => validateBookLike()}>
             <View>
                 <View style={styles.btnLike}>
                     <Image source={require("../Icons/save.png")} style={styles.tinyIcon}/>

@@ -57,6 +57,16 @@ export default function App() {
       setViewBookModalLike(false);
       console.log("VIEW BOOKSREAD: ",listBookRead);
     } 
+
+    const handleEditBookLike = (id, bookName) => {
+      console.log("ID: ",id, " VALUE: ",bookName);
+      handleRemoveBookLike(id);
+      setListBookLike((bookList)=> [...bookList, {id: id, value: bookName}]);
+      
+      //CIERRO EL MODAL 
+      setViewBookModalLike(false);
+      console.log("VIEW BOOKSREAD: ",listBookLike);
+    }
   return (
     <View style={styles.container}>
       {/* <ViewBooksLike listBookRead={listBookRead} handleRemoveBook={handleRemoveBook} /> */}
@@ -68,9 +78,10 @@ export default function App() {
                 const { id, value } = itemData.item;
                 return(
                     <ViewBooksLike
-                        value={value}
-                        // image={image}
-                        onDelete={handleRemoveBookLike} 
+                    book={itemData.item}
+                    // image={image}
+                    onDelete={handleRemoveBookLike} 
+                    onEditBookLike={handleEditBookLike}
                     />
                 )
             }
